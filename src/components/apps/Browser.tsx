@@ -4,6 +4,17 @@ import { browserTabsAtom, activeTabIdAtom } from "@/atoms/app";
 import { ArrowLeft, ArrowRight, RotateCw, MoreVertical } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+const getProxyUrl = (url: string) => {
+  if (!url) return "";
+  if (url.startsWith("/proxy") || url.includes("/proxy?url=")) return url;
+  if (url.includes("igu=1")) return url;
+  const isExternal = url.startsWith("http") && !url.includes(window.location.host);
+  if (isExternal) {
+    return `/proxy?url=${encodeURIComponent(url)}`;
+  }
+  return url;
+};
+
 export const Browser = ({ link = "", isChrome = false }) => {
   const [tabs, setTabs] = useAtom(browserTabsAtom);
   const [activeTabId] = useAtom(activeTabIdAtom);
@@ -70,7 +81,7 @@ export const Browser = ({ link = "", isChrome = false }) => {
 
   const handleRefresh = () => {
     if (iframeRef.current) {
-      iframeRef.current.src = currentUrl;
+      iframeRef.current.src = getProxyUrl(currentUrl);
     }
   };
 
@@ -78,7 +89,7 @@ export const Browser = ({ link = "", isChrome = false }) => {
   if (!isChrome) {
     return (
       <iframe
-        src={link ?? "https://www.google.com/webhp?igu=1"}
+        src={getProxyUrl(link || "https://www.google.com/webhp?igu=1")}
         width="100%"
         height="100%"
         style={{
@@ -179,7 +190,7 @@ export const Browser = ({ link = "", isChrome = false }) => {
       {/* Iframe Content */}
       <iframe
         ref={iframeRef}
-        src={currentUrl}
+        src={getProxyUrl(currentUrl)}
         width="100%"
         className="flex-1"
         style={{
