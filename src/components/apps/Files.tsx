@@ -1,24 +1,14 @@
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { 
-  ChevronRight, 
-  ChevronDown, 
-  Search, 
-  Grid, 
-  List, 
-  ArrowUpDown, 
-  MoreVertical,
   Clock,
-  BookOpen,
-  CheckSquare,
   Laptop,
   Download,
   Terminal,
   Play,
   Cloud,
   Folder,
-  FileText,
-  HelpCircle
+  FileText
 } from "lucide-react";
 
 interface FileItem {

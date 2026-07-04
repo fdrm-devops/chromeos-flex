@@ -1,6 +1,5 @@
 import { ReactComponent as GoogleLogo } from "@/assets/images/apps/google.svg";
 import { ReactComponent as Trapezoid } from "@/assets/shapes/trapezoid.svg";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { Input } from "@/components/ui/input";
 import { STAR_MENU_APPS, STAR_MENU_DEFAULT_APPS } from "@/lib/constants";
 import { Button } from "@/components/ui/button";

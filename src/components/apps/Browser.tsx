@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, KeyboardEvent } from "react";
 import { useAtom } from "jotai";
 import { browserTabsAtom, activeTabIdAtom } from "@/atoms/app";
-import { ArrowLeft, ArrowRight, RotateCw, Star, Search, MoreVertical } from "lucide-react";
+import { ArrowLeft, ArrowRight, RotateCw, MoreVertical } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export const Browser = ({ link = "", isChrome = false }) => {
