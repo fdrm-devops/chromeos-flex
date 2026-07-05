@@ -87,9 +87,9 @@ export default function Settings() {
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
                   className={cn(
-                    "flex items-center gap-4 px-4 py-2.5 w-full rounded-[12px] text-left transition-all duration-200 cursor-pointer",
+                    "flex items-center gap-4 px-4 h-10 w-full rounded-full text-left transition-all duration-200 cursor-pointer",
                     isActive
-                      ? "bg-[#8d3b00] text-white shadow-sm dark:bg-[#fbb991] dark:text-zinc-950"
+                      ? "bg-[oklch(0.49_0.11_66.55)] text-white shadow-sm"
                       : "hover:bg-foreground/5 text-[#5c3e21] dark:text-neutral-300"
                   )}
                 >

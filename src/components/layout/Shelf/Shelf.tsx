@@ -1,7 +1,6 @@
 import { TASKBAR_APPS, STAR_MENU_APPS } from "@/lib/constants";
 import { Button } from "@/components/ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import BatteryChargingFullIcon from "@mui/icons-material/BatteryChargingFull";
 import AppLauncher from "./components/AppLauncher";
 import { cn } from "@/lib/utils";
 import { openedAppsAtom, shelfAppsAtom } from "@/atoms/app";
@@ -88,7 +87,7 @@ export function Shelf() {
   };
 
   return (
-    <div className="grid grid-cols-4 h-full w-full px-3 items-center">
+    <div className="grid grid-cols-4 h-full w-full px-2 items-center">
 
       {/* 1. KIRI: GOOGLE LAUNCHER BUTTON */}
       <div className="flex items-center h-full justify-start">
@@ -227,21 +226,21 @@ export function Shelf() {
       </div>
 
       {/* 3. KANAN: STATUS TRAY & CLOCK SYSTEM */}
-      <div className="flex justify-end items-center space-x-1.5 h-full">
+      <div className="flex justify-end items-center gap-1 h-full">
         {/* TANGGAL */}
         <Popover open={isCalendarOpen} onOpenChange={setIsCalendarOpen}>
           <PopoverTrigger asChild>
             <Button
               variant={"ghost"}
               className={cn(
-                "h-8 px-3 rounded-l-full rounded-r-sm text-xs font-medium transition-colors",
+                "h-9 px-3 rounded-l-full rounded-r-sm text-sm font-medium leading-5 transition-colors",
                 // REQ: Jika kalender aktif/terbuka warna ganti fbb991
                 isCalendarOpen
                   ? "bg-[#fbb991] text-black hover:bg-[#fbb991]"
                   : "bg-white/45 text-foreground hover:bg-primary/20"
               )}
             >
-              {format(new Date(), 'MMM dd')}
+              {format(new Date(), 'MMM d')}
             </Button>
           </PopoverTrigger>
           <PopoverContent
@@ -263,16 +262,16 @@ export function Shelf() {
             <Button
               variant={"ghost"}
               className={cn(
-                "flex items-center space-x-1.5 h-8 px-3 rounded-r-full !rounded-l-3xl text-xs font-medium transition-colors",
+                "flex items-center gap-2 h-9 px-3 rounded-r-full !rounded-l-3xl text-sm font-medium leading-5 transition-colors",
                 // REQ: Jika system tray aktif/terbuka warna ganti fbb991
                 isSystemTrayOpen
                   ? "bg-[#fbb991] text-black hover:bg-[#fbb991]"
                   : "bg-white/45 text-foreground hover:bg-primary/20"
               )}
             >
-              <div>{format(new Date(), 'HH:mm')}</div>
-              <span className="icon text-[14px]">signal_wifi_4_bar</span>
-              <BatteryChargingFullIcon sx={{ fontSize: "14px" }} />
+              <div>{format(new Date(), 'h:mm')}</div>
+              <span className="icon text-[16px]">signal_wifi_4_bar</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" className="text-foreground -ml-1"><path d="M15.67 4H14V2h-4v2H8.33C7.6 4 7 4.6 7 5.33v15.33C7 21.4 7.6 22 8.33 22h7.33c.74 0 1.34-.6 1.34-1.33V5.33C17 4.6 16.4 4 15.67 4M15 6v3H9V6zm1 4v3h2v-3zm4 0v3h2v-3z"/></svg>
             </Button>
           </PopoverTrigger>
           <PopoverContent

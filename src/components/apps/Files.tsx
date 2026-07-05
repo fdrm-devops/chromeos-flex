@@ -99,7 +99,7 @@ const mockDirectories: DirData = {
 };
 
 export default function Files() {
-  const [activeDirKey, setActiveDirKey] = useState<string>("todo");
+  const [activeDirKey, setActiveDirKey] = useState<string>("recent");
   const [searchQuery, setSearchQuery] = useState("");
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [viewMode, setViewMode] = useState<"list" | "grid">("list");
@@ -131,7 +131,7 @@ export default function Files() {
   };
 
   return (
-    <div className="flex size-full bg-[#ffece5] dark:bg-[#1a1a1c] text-zinc-800 dark:text-neutral-200 select-none overflow-hidden h-full rounded-b-lg">
+    <div className="flex size-full bg-[#ffece5] dark:bg-[#1a1a1c] text-zinc-800 dark:text-neutral-200 select-none overflow-hidden h-full ">
       
       {/* 1. LEFT SIDEBAR - Matches 100% the Screenshot Layout */}
       <div className="w-[280px] shrink-0 bg-[#ffece5] dark:bg-[#202124]/40 border-r border-foreground/5 dark:border-white/5 flex flex-col pt-4 pr-1 overflow-y-auto scrollbar-none text-zinc-800 dark:text-neutral-300">
@@ -140,45 +140,45 @@ export default function Files() {
         <button
           onClick={() => setActiveDirKey("recent")}
           className={cn(
-            "flex items-center w-[calc(100%-1rem)] mx-2 px-4 py-1.5 rounded-[8px] text-left text-[13px] font-semibold cursor-pointer transition-colors",
+            "flex items-center w-[calc(100%-1rem)] mx-2 h-10 px-4 mt-0.5 rounded-full text-left text-[13px] font-semibold cursor-pointer transition-colors",
             activeDirKey === "recent"
-              ? "bg-zinc-200/80 text-zinc-900 dark:bg-white/10 dark:text-white"
+              ? "bg-[oklch(0.49_0.11_66.55)] text-white shadow-sm dark:bg-[oklch(0.49_0.11_66.55)]"
               : "hover:bg-foreground/5 text-zinc-700 dark:text-neutral-300"
           )}
         >
-          <div className="w-4 flex items-center justify-center mr-1" />
-          <Clock className="size-4.5 shrink-0 mr-2.5 text-zinc-700 dark:text-neutral-300" />
-          <span>Recent</span>
+          <div className="w-4 flex items-center justify-center" />
+          <Clock className="size-4.5 shrink-0 mr-2.5" />
+          <span className="ml-1">Recent</span>
         </button>
 
         {/* Book */}
         <button
           onClick={() => setActiveDirKey("book")}
           className={cn(
-            "flex items-center w-[calc(100%-1rem)] mx-2 px-4 py-1.5 rounded-[8px] text-left text-[13px] font-semibold cursor-pointer transition-colors mt-0.5",
+            "flex items-center w-[calc(100%-1rem)] mx-2 h-10 px-4 mt-0.5 rounded-full text-left text-[13px] font-semibold cursor-pointer transition-colors",
             activeDirKey === "book"
-              ? "bg-zinc-200/80 text-zinc-900 dark:bg-white/10 dark:text-white"
+              ? "bg-[oklch(0.49_0.11_66.55)] text-white shadow-sm dark:bg-[oklch(0.49_0.11_66.55)]"
               : "hover:bg-foreground/5 text-zinc-700 dark:text-neutral-300"
           )}
         >
-          <span className="text-[8px] text-zinc-600 dark:text-neutral-400 shrink-0 w-3.5 mr-1 select-none flex items-center justify-center">▶</span>
-          <Folder className="size-4.5 shrink-0 mr-2.5 text-zinc-700 dark:text-neutral-300" />
-          <span>Book</span>
+          <span className="text-[8px] mr-2 select-none flex items-center justify-center">▶</span>
+          <Folder className="size-4.5 shrink-0" />
+          <span className="ml-2">Book</span>
         </button>
 
         {/* To-do */}
         <button
           onClick={() => setActiveDirKey("todo")}
           className={cn(
-            "flex items-center w-[calc(100%-1rem)] mx-2 px-4 py-1.5 rounded-[8px] text-left text-[13px] font-semibold cursor-pointer transition-colors mt-0.5",
+            "flex items-center w-[calc(100%-1rem)] mx-2 h-10 px-4 mt-0.5 rounded-full text-left text-[13px] font-semibold cursor-pointer transition-colors",
             activeDirKey === "todo"
-              ? "bg-zinc-200/80 text-zinc-900 dark:bg-white/10 dark:text-white"
+              ? "bg-[oklch(0.49_0.11_66.55)] text-white shadow-sm dark:bg-[oklch(0.49_0.11_66.55)]"
               : "hover:bg-foreground/5 text-zinc-700 dark:text-neutral-300"
           )}
         >
-          <span className="text-[8px] text-zinc-600 dark:text-neutral-400 shrink-0 w-3.5 mr-1 select-none flex items-center justify-center">▶</span>
-          <Folder className="size-4.5 shrink-0 mr-2.5 text-zinc-700 dark:text-neutral-300" />
-          <span>To-do</span>
+          <span className="text-[8px] mr-2 select-none flex items-center justify-center">▶</span>
+          <Folder className="size-4.5 shrink-0" />
+          <span className="ml-2">To-do</span>
         </button>
 
         <div className="h-[1px] bg-zinc-300/40 dark:bg-white/5 my-2 ml-4 mr-2" />
@@ -187,15 +187,20 @@ export default function Files() {
         <div>
           <button 
             onClick={() => setMyFilesExpanded(!myFilesExpanded)}
-            className="flex items-center w-[calc(100%-1rem)] mx-2 px-4 py-1.5 rounded-[8px] hover:bg-foreground/5 text-left text-[13px] font-semibold text-zinc-800 dark:text-neutral-200 cursor-pointer"
+             className={cn(
+              "flex items-center w-[calc(100%-1rem)] mx-2 h-10 px-4 rounded-full text-left text-[13px] font-semibold cursor-pointer transition-colors",
+              myFilesExpanded
+                ? "bg-[oklch(0.49_0.11_66.55)] text-white shadow-sm dark:bg-[oklch(0.49_0.11_66.55)]"
+                : "hover:bg-foreground/5 text-zinc-800 dark:text-neutral-200"
+            )}
           >
             {myFilesExpanded ? (
-              <span className="text-[8px] text-zinc-600 dark:text-neutral-400 shrink-0 w-3.5 mr-1 select-none flex items-center justify-center">▼</span>
+              <span className="text-[8px] mr-2 select-none flex items-center justify-center">▼</span>
             ) : (
-              <span className="text-[8px] text-zinc-600 dark:text-neutral-400 shrink-0 w-3.5 mr-1 select-none flex items-center justify-center">▶</span>
+              <span className="text-[8px] mr-2 select-none flex items-center justify-center">▶</span>
             )}
-            <Laptop className="size-4.5 shrink-0 mr-2.5 text-zinc-700 dark:text-neutral-300" />
-            <span>My files</span>
+            <Laptop className="size-4.5 shrink-0" />
+            <span className="ml-2">My files</span>
           </button>
 
           {myFilesExpanded && (
@@ -204,13 +209,13 @@ export default function Files() {
               <button
                 onClick={() => setActiveDirKey("downloads")}
                 className={cn(
-                  "flex items-center gap-2.5 px-4 py-1.5 w-[calc(100%-1.5rem)] mx-2 rounded-[8px] text-left text-[13px] font-semibold transition-colors cursor-pointer mt-0.5",
+                  "flex items-center gap-2.5 px-4 h-10 w-[calc(100%-1.5rem)] mx-2 mt-0.5 rounded-full text-left text-[13px] font-semibold transition-colors cursor-pointer",
                   activeDirKey === "downloads"
-                    ? "bg-zinc-200/80 text-zinc-900 dark:bg-white/10 dark:text-white"
+                    ? "bg-[oklch(0.49_0.11_66.55)] text-white shadow-sm dark:bg-[oklch(0.49_0.11_66.55)]"
                     : "hover:bg-foreground/5 text-zinc-700 dark:text-neutral-300"
                 )}
               >
-                <Download className="size-4.5 shrink-0 mr-0.5 text-zinc-700 dark:text-neutral-300" />
+                <Download className="size-4.5 shrink-0" />
                 <span>Downloads</span>
               </button>
 
@@ -218,13 +223,13 @@ export default function Files() {
               <button
                 onClick={() => setActiveDirKey("linux")}
                 className={cn(
-                  "flex items-center gap-2.5 px-4 py-1.5 w-[calc(100%-1.5rem)] mx-2 rounded-[8px] text-left text-[13px] font-semibold transition-colors cursor-pointer mt-0.5",
+                  "flex items-center gap-2.5 px-4 h-10 w-[calc(100%-1.5rem)] mx-2 mt-0.5 rounded-full text-left text-[13px] font-semibold transition-colors cursor-pointer",
                   activeDirKey === "linux"
-                    ? "bg-zinc-200/80 text-zinc-900 dark:bg-white/10 dark:text-white"
+                    ? "bg-[oklch(0.49_0.11_66.55)] text-white shadow-sm dark:bg-[oklch(0.49_0.11_66.55)]"
                     : "hover:bg-foreground/5 text-zinc-700 dark:text-neutral-300"
                 )}
               >
-                <Terminal className="size-4.5 shrink-0 mr-0.5 text-zinc-700 dark:text-neutral-300" />
+                <Terminal className="size-4.5 shrink-0" />
                 <span>Linux files</span>
               </button>
 
@@ -232,13 +237,13 @@ export default function Files() {
               <button
                 onClick={() => setActiveDirKey("play")}
                 className={cn(
-                  "flex items-center gap-2.5 px-4 py-1.5 w-[calc(100%-1.5rem)] mx-2 rounded-[8px] text-left text-[13px] font-semibold transition-colors cursor-pointer mt-0.5",
+                  "flex items-center gap-2.5 px-4 h-10 w-[calc(100%-1.5rem)] mx-2 mt-0.5 rounded-full text-left text-[13px] font-semibold transition-colors cursor-pointer",
                   activeDirKey === "play"
-                    ? "bg-zinc-200/80 text-zinc-900 dark:bg-white/10 dark:text-white"
+                    ? "bg-[oklch(0.49_0.11_66.55)] text-white shadow-sm dark:bg-[oklch(0.49_0.11_66.55)]"
                     : "hover:bg-foreground/5 text-zinc-700 dark:text-neutral-300"
                 )}
               >
-                <Play className="size-4.5 shrink-0 mr-0.5 text-zinc-700 dark:text-neutral-300" />
+                <Play className="size-4.5 shrink-0" />
                 <span>Play files</span>
               </button>
             </div>
@@ -250,73 +255,24 @@ export default function Files() {
           <button 
             onClick={() => setActiveDirKey("drive")}
             className={cn(
-              "flex items-center w-[calc(100%-1rem)] mx-2 px-4 py-1.5 rounded-[8px] text-left text-[13px] font-semibold cursor-pointer",
+              "flex items-center w-[calc(100%-1rem)] mx-2 h-10 px-4 rounded-full text-left text-[13px] font-semibold cursor-pointer transition-colors",
               activeDirKey === "drive"
-                ? "bg-zinc-200/80 text-zinc-900 dark:bg-white/10 dark:text-white"
+                ? "bg-[oklch(0.49_0.11_66.55)] text-white shadow-sm dark:bg-[oklch(0.49_0.11_66.55)]"
                 : "hover:bg-foreground/5 text-zinc-700 dark:text-neutral-300"
             )}
           >
-            <span className="text-[8px] text-zinc-600 dark:text-neutral-400 shrink-0 w-3.5 mr-1 select-none flex items-center justify-center">▶</span>
-            <Cloud className="size-4.5 shrink-0 mr-2.5 text-zinc-700 dark:text-neutral-300" />
-            <span>Google Drive</span>
+            <span className="text-[8px] mr-2 select-none flex items-center justify-center">▶</span>
+            <Cloud className="size-4.5 shrink-0" />
+            <span className="ml-2">Google Drive</span>
           </button>
-        </div>
-
-        {/* Microsoft OneDrive Group */}
-        <div className="mt-1">
-          <button 
-            onClick={() => setOneDriveExpanded(!oneDriveExpanded)}
-            className="flex items-center w-[calc(100%-1rem)] mx-2 px-4 py-1.5 rounded-[8px] hover:bg-foreground/5 text-left text-[13px] font-semibold text-zinc-800 dark:text-neutral-200 cursor-pointer"
-          >
-            {oneDriveExpanded ? (
-              <span className="text-[8px] text-zinc-600 dark:text-neutral-400 shrink-0 w-3.5 mr-1 select-none flex items-center justify-center">▼</span>
-            ) : (
-              <span className="text-[8px] text-zinc-600 dark:text-neutral-400 shrink-0 w-3.5 mr-1 select-none flex items-center justify-center">▶</span>
-            )}
-            <Cloud className="size-4.5 shrink-0 mr-2.5 text-zinc-700 dark:text-neutral-300" />
-            <span>Microsoft OneDrive</span>
-          </button>
-
-          {oneDriveExpanded && (
-            <div className="pl-6 flex flex-col">
-              {/* Attachments */}
-              <button
-                onClick={() => setActiveDirKey("onedrive_attachments")}
-                className={cn(
-                  "flex items-center gap-2.5 px-4 py-1.5 w-[calc(100%-1.5rem)] mx-2 rounded-[8px] text-left text-[13px] font-semibold transition-colors cursor-pointer mt-0.5",
-                  activeDirKey === "onedrive_attachments"
-                    ? "bg-zinc-200/80 text-zinc-900 dark:bg-white/10 dark:text-white"
-                    : "hover:bg-foreground/5 text-zinc-700 dark:text-neutral-300"
-                )}
-              >
-                <Folder className="size-4.5 shrink-0 mr-0.5 text-zinc-700 dark:text-neutral-300" />
-                <span>Attachments</span>
-              </button>
-
-              {/* Documents */}
-              <button
-                onClick={() => setActiveDirKey("onedrive_documents")}
-                className={cn(
-                  "flex items-center gap-2.5 px-4 py-1.5 w-[calc(100%-1.5rem)] mx-2 rounded-[8px] text-left text-[13px] font-semibold transition-colors cursor-pointer mt-0.5",
-                  activeDirKey === "onedrive_documents"
-                    ? "bg-zinc-200/80 text-zinc-900 dark:bg-white/10 dark:text-white"
-                    : "hover:bg-foreground/5 text-zinc-700 dark:text-neutral-300"
-                )}
-              >
-                <span className="text-[8px] text-zinc-500 shrink-0 w-3 mr-0.5 select-none flex items-center justify-center">▶</span>
-                <Folder className="size-4.5 shrink-0 text-zinc-700 dark:text-neutral-300" />
-                <span>Documents</span>
-              </button>
-            </div>
-          )}
         </div>
 
       </div>
 
       {/* 2. RIGHT WORKSPACE */}
-      <div className="flex-1 bg-[#ffece5] dark:bg-[#1a1a1c] p-3 pl-1 pr-3 pb-3 overflow-hidden flex flex-col">
+      <div className="flex-1 bg-[#ffece5] dark:bg-[#1a1a1c] p-3 pl-1 pr-3 pb-0 overflow-hidden flex flex-col">
         
-        <div className="size-full bg-white dark:bg-[#202124] rounded-[16px] overflow-hidden flex flex-col shadow-sm">
+        <div className="size-full bg-white dark:bg-[#202124] rounded-[16px] rounded-b-none overflow-hidden flex flex-col shadow-sm">
           
           {/* Action Header */}
           <div className="h-12 flex items-center justify-between px-6 shrink-0 bg-white dark:bg-[#202124] border-b border-foreground/5 dark:border-white/5">
@@ -403,16 +359,16 @@ export default function Files() {
         </div>
 
         {/* Content View */}
-        <div className="flex-1 overflow-y-auto px-6 py-2 scrollbar-none">
+        <div className="flex-1 overflow-y-auto px-0 py-0 scrollbar-none">
           {viewMode === "list" ? (
             /* TABLE LIST VIEW - Matches 100% the Screenshot Layout */
             <table className="w-full text-left border-collapse text-[12.5px] text-zinc-800 dark:text-neutral-200">
               <thead>
                 <tr className="border-b border-zinc-200/60 dark:border-white/10 text-zinc-500 dark:text-neutral-400">
-                  <th className="py-2.5 font-medium pl-2 text-zinc-800 dark:text-neutral-200">Name</th>
-                  <th className="py-2.5 font-medium border-l border-zinc-200/80 dark:border-white/10 pl-4 pr-2 text-zinc-800 dark:text-neutral-200">Size</th>
-                  <th className="py-2.5 font-medium border-l border-zinc-200/80 dark:border-white/10 pl-4 pr-2 text-zinc-800 dark:text-neutral-200">Type</th>
-                  <th className="py-2.5 font-medium border-l border-zinc-200/80 dark:border-white/10 pl-4 pr-2 text-zinc-800 dark:text-neutral-200">
+                  <th className="py-3 font-medium pl-6 text-zinc-800 dark:text-neutral-200">Name</th>
+                  <th className="py-3 font-medium border-l border-zinc-200/80 dark:border-white/10 pl-4 pr-2 text-zinc-800 dark:text-neutral-200">Size</th>
+                  <th className="py-3 font-medium border-l border-zinc-200/80 dark:border-white/10 pl-4 pr-2 text-zinc-800 dark:text-neutral-200">Type</th>
+                  <th className="py-3 font-medium border-l border-zinc-200/80 dark:border-white/10 pl-4 pr-6 text-zinc-800 dark:text-neutral-200">
                     <span className="flex items-center gap-1">
                       Date modified <span className="icon text-[14px] ml-0.5">arrow_downward</span>
                     </span>
@@ -431,7 +387,7 @@ export default function Files() {
                       onDoubleClick={() => handleItemDoubleClick(item)}
                       className="border-b border-zinc-100/40 dark:border-white/[0.02] hover:bg-[#ffdbc1]/10 dark:hover:bg-[#fbb991]/5 cursor-pointer group transition-colors"
                     >
-                      <td className="py-2.5 pl-2 flex items-center gap-3 pr-2 text-zinc-800 dark:text-neutral-200">
+                      <td className="py-3 pl-6 flex items-center gap-3 pr-2 text-zinc-800 dark:text-neutral-200">
                         {item.isFolder ? (
                           <span className="icon text-[20px] text-zinc-700 dark:text-neutral-300">folder</span>
                         ) : (
@@ -441,9 +397,9 @@ export default function Files() {
                           {item.name}
                         </span>
                       </td>
-                      <td className="py-2.5 pl-4 pr-2 text-zinc-500 dark:text-neutral-400">{item.size}</td>
-                      <td className="py-2.5 pl-4 pr-2 text-zinc-500 dark:text-neutral-400">{item.type}</td>
-                      <td className="py-2.5 pl-4 pr-2 text-zinc-500 dark:text-neutral-400">{item.modified}</td>
+                      <td className="py-3 pl-4 pr-2 text-zinc-500 dark:text-neutral-400">{item.size}</td>
+                      <td className="py-3 pl-4 pr-2 text-zinc-500 dark:text-neutral-400">{item.type}</td>
+                      <td className="py-3 pl-4 pr-6 text-zinc-500 dark:text-neutral-400">{item.modified}</td>
                     </tr>
                   ))
                 )}
